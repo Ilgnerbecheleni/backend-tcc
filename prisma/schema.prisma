@@ -1,0 +1,65 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+
+model Usuarios{
+  @@map("Usuarios")
+  id                    String   @id @default(uuid())
+  nome  String  
+  telefone String?
+  sub String
+  classificacoes Classificacao[] 
+  trabalho  Trabalho []
+  createdAt DateTime @default(now())
+   
+  }
+
+model Classificacao{
+  @@map("Classificacoes")
+  id String @id @default(uuid())
+  classificacao Int
+  userId String
+  user Usuarios @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Trabalho {
+    @@map("Trabalhos")
+    id     String     @id @default(uuid())
+    titulo String 
+    descricao String
+    valorHora  Float
+    servicoId String
+    usuarioId String
+    servico Servico @relation(fields: [servicoId], references: [id])
+    usuario Usuarios  @relation(fields: [usuarioId], references: [id], onDelete: Cascade)
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+}
+
+
+model Servico{
+    @@map("Servicos")
+    id          String     @id @default(uuid())
+    NomeServico String
+    trabalho  Trabalho[]
+}
+
+
+
+
+
+
+
