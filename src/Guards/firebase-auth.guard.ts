@@ -23,7 +23,7 @@ export class FirebaseAuthGuard implements CanActivate {
         try {
             const request = context.switchToHttp().getRequest();
             const token = request.headers.authorization.split(' ')[1];
-            console.log(token);
+            // console.log(token);
             const firebaseUser = await getAuth(firebaseapp)
                 .verifyIdToken(token)
                 .then((decodedToken) => {
@@ -43,6 +43,7 @@ export class FirebaseAuthGuard implements CanActivate {
 
 
             request.user = firebaseUser;
+            
             return true;
 
 

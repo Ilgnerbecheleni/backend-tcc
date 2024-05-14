@@ -1,9 +1,7 @@
 /* eslint-disable prettier/prettier */
 // UsuarioExistsInterceptor.ts
-
 import { Injectable, NestInterceptor, ExecutionContext, CallHandler } from '@nestjs/common';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { UsuariosService } from 'src/usuarios/usuarios.service';
 
 @Injectable()

@@ -1,34 +1,48 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+/* eslint-disable prettier/prettier */
+import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, UseInterceptors, Request } from '@nestjs/common';
 import { TrabalhosService } from './trabalhos.service';
 import { CreateTrabalhoDto } from './dto/create-trabalho.dto';
 import { UpdateTrabalhoDto } from './dto/update-trabalho.dto';
+import { UsuarioExistsInterceptor } from 'src/Interceptors/UsuarioExistsInterceptor';
+import { FirebaseAuthGuard } from 'src/Guards/firebase-auth.guard';
+import { OwnerCheckInterceptor } from 'src/Interceptors/owner-check.interceptor';
 
 @Controller('trabalhos')
 export class TrabalhosController {
   constructor(private readonly trabalhosService: TrabalhosService) {}
 
+  
   @Post()
-  create(@Body() createTrabalhoDto: CreateTrabalhoDto) {
-    return this.trabalhosService.create(createTrabalhoDto);
+  @UseGuards(FirebaseAuthGuard)
+  @UseInterceptors(UsuarioExistsInterceptor) // Aplica o interceptor
+  async create(@Body() createTrabalhoDto: CreateTrabalhoDto, @Request() req) {
+    const { usuario } = req;
+    const { sub } = usuario;
+    console.log(usuario); // Adicione logs para depuração
+    return this.trabalhosService.create(createTrabalhoDto, sub);
   }
 
   @Get()
   findAll() {
     return this.trabalhosService.findAll();
   }
-
   @Get(':id')
+  @UseGuards(FirebaseAuthGuard) // Protege o método com FirebaseAuthGuard
   findOne(@Param('id') id: string) {
-    return this.trabalhosService.findOne(+id);
+    return this.trabalhosService.findOne(id);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateTrabalhoDto: UpdateTrabalhoDto) {
-    return this.trabalhosService.update(+id, updateTrabalhoDto);
+  @UseInterceptors(OwnerCheckInterceptor) // Aplica o interceptor
+  update(@Param('id') id: string, @Body() updateTrabalhoDto: UpdateTrabalhoDto, @Request() req) {
+    const { sub } = req.usuario;
+    return this.trabalhosService.update(id, updateTrabalhoDto, sub);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.trabalhosService.remove(+id);
+  @UseGuards(FirebaseAuthGuard)
+  @UseInterceptors(OwnerCheckInterceptor) // Aplica apenas o interceptor OwnerCheckInterceptor
+  remove(@Param('id') id: string, @Request() req) {
+    return this.trabalhosService.remove(id, req.usuario.sub);
   }
 }
