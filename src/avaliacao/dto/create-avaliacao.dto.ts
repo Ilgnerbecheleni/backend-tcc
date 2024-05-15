@@ -1,1 +1,4 @@
-export class CreateAvaliacaoDto {}
+/* eslint-disable prettier/prettier */
+export class CreateAvaliacaoDto {
+    classificacao: number;
+}

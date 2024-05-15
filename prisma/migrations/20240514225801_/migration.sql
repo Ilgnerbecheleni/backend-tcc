@@ -13,7 +13,8 @@ CREATE TABLE `Usuarios` (
 CREATE TABLE `Classificacoes` (
     `id` VARCHAR(191) NOT NULL,
     `classificacao` INTEGER NOT NULL,
-    `userId` VARCHAR(191) NOT NULL,
+    `autorId` VARCHAR(191) NOT NULL,
+    `avaliadoId` VARCHAR(191) NOT NULL,
 
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
@@ -51,7 +52,10 @@ CREATE TABLE `Categoria` (
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- AddForeignKey
-ALTER TABLE `Classificacoes` ADD CONSTRAINT `Classificacoes_userId_fkey` FOREIGN KEY (`userId`) REFERENCES `Usuarios`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `Classificacoes` ADD CONSTRAINT `Classificacoes_autorId_fkey` FOREIGN KEY (`autorId`) REFERENCES `Usuarios`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE `Classificacoes` ADD CONSTRAINT `Classificacoes_avaliadoId_fkey` FOREIGN KEY (`avaliadoId`) REFERENCES `Usuarios`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE `Comentarios` ADD CONSTRAINT `Comentarios_userId_fkey` FOREIGN KEY (`userId`) REFERENCES `Usuarios`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;

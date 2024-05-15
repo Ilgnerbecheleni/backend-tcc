@@ -8,7 +8,7 @@ import { PrismaService } from 'src/prisma/prisma.service';
 export class TrabalhosService {
 
 
-  constructor(private readonly prisma:PrismaService)  {  }  
+  constructor(private readonly prisma: PrismaService) { }
 
   async create(createTrabalhoDto: CreateTrabalhoDto, sub: string) {
     try {
@@ -41,7 +41,14 @@ export class TrabalhosService {
 
   async findAll() {
     try {
-      return await this.prisma.trabalho.findMany();
+      return await this.prisma.trabalho.findMany({include:{
+        usuario:{
+          select:{nome:true}
+        },
+        servico:{
+          select:{NomeServico:true}
+        }
+      }});
     } catch (error) {
       throw new BadRequestException({ message: 'Falha ao buscar trabalhos', erro: error.message });
     }
@@ -50,7 +57,14 @@ export class TrabalhosService {
   async findOne(id: string) {
     try {
       const trabalho = await this.prisma.trabalho.findUnique({
-        where: { id },
+        where: { id },include:{
+          usuario:{
+            select:{nome:true}
+          },
+          servico:{
+            select:{NomeServico:true}
+          }
+        }
       });
 
       if (!trabalho) {
@@ -62,7 +76,7 @@ export class TrabalhosService {
       throw new BadRequestException({ message: 'Falha ao buscar trabalho', erro: error.message });
     }
   }
- 
+
   async update(id: string, updateTrabalhoDto: UpdateTrabalhoDto, sub: string) {
     try {
       // Verifica se o trabalho existe
