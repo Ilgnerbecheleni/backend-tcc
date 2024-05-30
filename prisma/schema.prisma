@@ -19,6 +19,7 @@ model Usuarios {
   id                    String           @id @default(uuid())
   nome                  String  
   sub                   String           @unique
+  photoUrl              String?
   classificacoesFeitas  Classificacao[]  @relation("ClassificacoesFeitas")
   classificacoesRecebidas Classificacao[] @relation("ClassificacoesRecebidas")
   trabalho              Trabalho[]

@@ -33,14 +33,18 @@ export class TrabalhosController {
   }
 
   @Patch(':id')
+  @UseGuards(FirebaseAuthGuard)
+  @UseInterceptors(UsuarioExistsInterceptor) // Aplica o interceptor
   @UseInterceptors(OwnerCheckInterceptor) // Aplica o interceptor
   update(@Param('id') id: string, @Body() updateTrabalhoDto: UpdateTrabalhoDto, @Request() req) {
-    const { sub } = req.usuario;
+    const { user } = req;
+    const { sub } = user;
     return this.trabalhosService.update(id, updateTrabalhoDto, sub);
   }
 
   @Delete(':id')
   @UseGuards(FirebaseAuthGuard)
+  @UseInterceptors(UsuarioExistsInterceptor) // Aplica o interceptor
   @UseInterceptors(OwnerCheckInterceptor) // Aplica apenas o interceptor OwnerCheckInterceptor
   remove(@Param('id') id: string, @Request() req) {
     return this.trabalhosService.remove(id, req.usuario.sub);

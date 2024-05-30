@@ -12,7 +12,7 @@ export class OwnerCheckInterceptor implements NestInterceptor {
 
   async intercept(context: ExecutionContext, next: CallHandler): Promise<Observable<any>> {
     const request = context.switchToHttp().getRequest();
-    const userId = request.usuario.sub; // Assumindo que o sub do usuário está disponível na requisição
+    const userId = request.user.sub; // Assumindo que o sub do usuário está disponível na requisição
 
     if (!userId) {
       throw new ForbiddenException('Usuário não autenticado');

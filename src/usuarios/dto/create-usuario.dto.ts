@@ -9,4 +9,6 @@ export class CreateUsuarioDto {
     telefone?: string;
     @IsString()
     sub: string;
+    @IsString()
+    photoUrl: string;
 }

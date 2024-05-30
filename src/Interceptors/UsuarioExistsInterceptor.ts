@@ -10,12 +10,12 @@ export class UsuarioExistsInterceptor implements NestInterceptor {
 
   async intercept(context: ExecutionContext, next: CallHandler): Promise<Observable<any>> {
     const request = context.switchToHttp().getRequest();
-    const { sub, name } = request.user;
-
+    const { sub, name , picture } = request.user;
+console.log(request.user)
     let usuario = await this.usuariosService.findBySub(sub);
 
     if (!usuario) {
-      usuario = await this.usuariosService.create({ sub, nome: name });
+      usuario = await this.usuariosService.create({ sub, nome: name , photoUrl :  picture  });
     }
 
     // Define o usuário criado ou encontrado na requisição

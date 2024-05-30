@@ -43,7 +43,7 @@ export class TrabalhosService {
     try {
       return await this.prisma.trabalho.findMany({include:{
         usuario:{
-          select:{nome:true}
+          select:{id:true,nome:true, photoUrl:true}
         },
         servico:{
           select:{NomeServico:true}
@@ -59,7 +59,7 @@ export class TrabalhosService {
       const trabalho = await this.prisma.trabalho.findUnique({
         where: { id },include:{
           usuario:{
-            select:{nome:true}
+            select:{id:true,nome:true, photoUrl:true}
           },
           servico:{
             select:{NomeServico:true}

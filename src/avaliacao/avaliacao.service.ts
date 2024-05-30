@@ -67,7 +67,9 @@ export class AvaliacaoService {
       });
 
       if (!avaliacoes || avaliacoes.length === 0) {
-        throw new NotFoundException(`Nenhuma avaliação encontrada para o usuário com ID ${userId}`);
+        const totalAvaliacoes = avaliacoes.length;
+        const mediaAvaliacoes = 0;
+        return { totalAvaliacoes, mediaAvaliacoes };
       }
 
       // Calcular a média das avaliações
