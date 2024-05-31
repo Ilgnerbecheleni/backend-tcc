@@ -41,8 +41,10 @@ model Comentarios{
     @@map("Comentarios")
     id String @id @default(uuid())
     comentario String
-    userId String
-    user Usuarios @relation(fields: [userId], references: [id], onDelete: Cascade)
+    userSub String
+    user Usuarios @relation(fields: [userSub], references: [sub], onDelete: Cascade)
+    trabalhoId String 
+    trabalho Trabalho @relation(fields: [trabalhoId], references: [id])
 }
 
 model Trabalho {
@@ -58,6 +60,7 @@ model Trabalho {
   usuario       Usuarios  @relation(fields: [usuarioSub], references: [sub], onDelete: Cascade)
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
+  comentarios   Comentarios[]
 }
 
 

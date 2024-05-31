@@ -8,6 +8,7 @@ import { AvaliacaoModule } from './avaliacao/avaliacao.module';
 import { PrismaModule } from './prisma/prisma.module';
 import { ConfigModule } from '@nestjs/config';
 import { CategoriaModule } from './categoria/categoria.module';
+import { ComentariosModule } from './comentarios/comentarios.module';
 @Module({
   imports: [
     ConfigModule.forRoot(),
@@ -16,6 +17,7 @@ import { CategoriaModule } from './categoria/categoria.module';
     AvaliacaoModule,
     PrismaModule,
     CategoriaModule,
+    ComentariosModule,
   ],
   controllers: [AppController],
   providers: [AppService],

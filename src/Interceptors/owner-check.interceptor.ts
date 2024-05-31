@@ -3,7 +3,6 @@
 
 import { Injectable, NestInterceptor, ExecutionContext, CallHandler, ForbiddenException } from '@nestjs/common';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { PrismaService } from 'src/prisma/prisma.service';
 
 @Injectable()

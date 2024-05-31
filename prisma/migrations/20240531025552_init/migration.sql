@@ -24,7 +24,8 @@ CREATE TABLE `Classificacoes` (
 CREATE TABLE `Comentarios` (
     `id` VARCHAR(191) NOT NULL,
     `comentario` VARCHAR(191) NOT NULL,
-    `userId` VARCHAR(191) NOT NULL,
+    `userSub` VARCHAR(191) NOT NULL,
+    `trabalhoId` VARCHAR(191) NOT NULL,
 
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
@@ -59,7 +60,10 @@ ALTER TABLE `Classificacoes` ADD CONSTRAINT `Classificacoes_autorId_fkey` FOREIG
 ALTER TABLE `Classificacoes` ADD CONSTRAINT `Classificacoes_avaliadoId_fkey` FOREIGN KEY (`avaliadoId`) REFERENCES `Usuarios`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE `Comentarios` ADD CONSTRAINT `Comentarios_userId_fkey` FOREIGN KEY (`userId`) REFERENCES `Usuarios`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `Comentarios` ADD CONSTRAINT `Comentarios_userSub_fkey` FOREIGN KEY (`userSub`) REFERENCES `Usuarios`(`sub`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE `Comentarios` ADD CONSTRAINT `Comentarios_trabalhoId_fkey` FOREIGN KEY (`trabalhoId`) REFERENCES `Trabalhos`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE `Trabalhos` ADD CONSTRAINT `Trabalhos_servicoId_fkey` FOREIGN KEY (`servicoId`) REFERENCES `Categoria`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
