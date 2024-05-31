@@ -71,9 +71,7 @@ export class ComentariosService {
           },
         }
       });
-      if (comentarios.length === 0) {
-        throw new NotFoundException(`Nenhum comentário encontrado para trabalhoId ${trabalhoId}`);
-      }
+
       return comentarios;
     } catch (error) {
       throw new BadRequestException(`Erro ao buscar comentários por trabalhoId: ${error.message}`);
