@@ -59,7 +59,7 @@ export class TrabalhosService {
       const trabalho = await this.prisma.trabalho.findUnique({
         where: { id },include:{
           usuario:{
-            select:{id:true,nome:true, photoUrl:true,sub:true}
+            select:{id:true,nome:true, photoUrl:true,sub:true,createdAt:true}
           },
           servico:{
             select:{NomeServico:true}
