@@ -44,7 +44,7 @@ model Comentarios{
     userSub String
     user Usuarios @relation(fields: [userSub], references: [sub], onDelete: Cascade)
     trabalhoId String 
-    trabalho Trabalho @relation(fields: [trabalhoId], references: [id])
+    trabalho Trabalho @relation(fields: [trabalhoId], references: [id], onDelete: Cascade)
 }
 
 model Trabalho {
@@ -56,7 +56,7 @@ model Trabalho {
   valorHora     Float
   servicoId     String
   usuarioSub    String    // Altere de usuarioId para usuarioSub
-  servico       Categoria @relation(fields: [servicoId], references: [id])
+  servico       Categoria @relation(fields: [servicoId], references: [id],onDelete: Cascade)
   usuario       Usuarios  @relation(fields: [usuarioSub], references: [sub], onDelete: Cascade)
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
