@@ -46,7 +46,7 @@ export class TrabalhosController {
   @UseGuards(FirebaseAuthGuard)
   @UseInterceptors(UsuarioExistsInterceptor) // Aplica o interceptor
   @UseInterceptors(OwnerCheckInterceptor) // Aplica apenas o interceptor OwnerCheckInterceptor
-  remove(@Param('id') id: string, @Request() req) {
-    return this.trabalhosService.remove(id, req.usuario.sub);
+  remove(@Param('id') id: string, @Body() body) {
+    return this.trabalhosService.remove(id, body.sub);
   }
 }
