@@ -28,6 +28,13 @@ export class ComentariosController {
     return await this.comentariosService.findByTrabalhoId(trabalhoId);
   }
 
+
+  @Get('trabalho/:trabalhoId/count')
+  async countByTrabalhoId(@Param('trabalhoId') trabalhoId: string) {
+
+      return await this.comentariosService.countByTrabalhoId(trabalhoId);
+  }
+
   @Patch(':id')
   async update(@Param('id') id: string, @Body() updateComentarioDto: UpdateComentarioDto) {
     return await this.comentariosService.update(id, updateComentarioDto);

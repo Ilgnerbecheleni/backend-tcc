@@ -78,6 +78,18 @@ export class ComentariosService {
     }
   }
 
+  
+  async countByTrabalhoId(trabalhoId: string) {
+    try {
+      const count = await this.prisma.comentarios.count({
+        where: { trabalhoId },
+      });
+      return { count };
+    } catch (error) {
+      throw new BadRequestException(`Erro ao contar comentários por trabalhoId: ${error.message}`);
+    }
+  }
+
   async update(id: string, data: UpdateComentarioDto) {
     try {
       const comentario = await this.prisma.comentarios.findUnique({
