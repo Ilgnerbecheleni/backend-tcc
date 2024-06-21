@@ -9,6 +9,7 @@ import { PrismaModule } from './prisma/prisma.module';
 import { ConfigModule } from '@nestjs/config';
 import { CategoriaModule } from './categoria/categoria.module';
 import { ComentariosModule } from './comentarios/comentarios.module';
+import { FirebaseModule } from './firebase/firebase.module';
 @Module({
   imports: [
     ConfigModule.forRoot(),
@@ -18,6 +19,7 @@ import { ComentariosModule } from './comentarios/comentarios.module';
     PrismaModule,
     CategoriaModule,
     ComentariosModule,
+    FirebaseModule,
   ],
   controllers: [AppController],
   providers: [AppService],
