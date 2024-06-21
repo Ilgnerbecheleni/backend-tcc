@@ -53,4 +53,15 @@ try {
   remove(id: string) {
     return `This action removes a #${id} usuario`;
   }
+
+
+  async count() {
+    try {
+      const count = await this.prismaService.usuarios.count();
+      return { count };
+    } catch (error) {
+      throw new BadRequestException('Failed to count usuarios');
+    }
+  }
+
 }

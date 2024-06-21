@@ -137,4 +137,16 @@ export class TrabalhosService {
       throw new BadRequestException({ message: 'Falha ao remover trabalho', erro: error.message });
     }
   }
+
+
+  async count() {
+    try {
+      const count = await this.prisma.trabalho.count();
+      return { count };
+    } catch (error) {
+      throw new BadRequestException('Failed to count trabalhos');
+    }
+  }
+
+
 }

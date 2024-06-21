@@ -11,6 +11,10 @@ import { OwnerCheckInterceptor } from 'src/Interceptors/owner-check.interceptor'
 export class TrabalhosController {
   constructor(private readonly trabalhosService: TrabalhosService) {}
 
+  @Get('count')
+  count() {
+    return this.trabalhosService.count();
+  }
   
   @Post()
   @UseGuards(FirebaseAuthGuard)
@@ -49,4 +53,8 @@ export class TrabalhosController {
   remove(@Param('id') id: string, @Body() body) {
     return this.trabalhosService.remove(id, body.sub);
   }
+
+
+
+
 }

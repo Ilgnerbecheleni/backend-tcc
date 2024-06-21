@@ -48,4 +48,13 @@ export class UsuariosController {
   remove(@Param('id') id: string) {
     return this.usuariosService.remove(id);
   }
+
+
+
+  @Get('count')
+  count() {
+    return this.usuariosService.count();
+  }
+
+
 }

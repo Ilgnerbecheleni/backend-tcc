@@ -43,6 +43,15 @@ export class CategoriaService {
     }
   }
 
+  async count() {
+    try {
+      const count = await this.prisma.categoria.count();
+      return { count };
+    } catch (error) {
+      throw new BadRequestException('Failed to count categorias');
+    }
+  }
+
   async update(id: string, updateCategoriaDto: UpdateCategoriaDto) {
     try {
       const categoria = await this.prisma.categoria.findUnique({
