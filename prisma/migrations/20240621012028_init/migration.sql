@@ -63,10 +63,10 @@ ALTER TABLE `Classificacoes` ADD CONSTRAINT `Classificacoes_avaliadoId_fkey` FOR
 ALTER TABLE `Comentarios` ADD CONSTRAINT `Comentarios_userSub_fkey` FOREIGN KEY (`userSub`) REFERENCES `Usuarios`(`sub`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE `Comentarios` ADD CONSTRAINT `Comentarios_trabalhoId_fkey` FOREIGN KEY (`trabalhoId`) REFERENCES `Trabalhos`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE `Comentarios` ADD CONSTRAINT `Comentarios_trabalhoId_fkey` FOREIGN KEY (`trabalhoId`) REFERENCES `Trabalhos`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE `Trabalhos` ADD CONSTRAINT `Trabalhos_servicoId_fkey` FOREIGN KEY (`servicoId`) REFERENCES `Categoria`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE `Trabalhos` ADD CONSTRAINT `Trabalhos_servicoId_fkey` FOREIGN KEY (`servicoId`) REFERENCES `Categoria`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE `Trabalhos` ADD CONSTRAINT `Trabalhos_usuarioSub_fkey` FOREIGN KEY (`usuarioSub`) REFERENCES `Usuarios`(`sub`) ON DELETE CASCADE ON UPDATE CASCADE;
