@@ -20,7 +20,7 @@ console.log(request.user)
 
     // Define o usuário criado ou encontrado na requisição
     request.usuario = usuario;
-
+console.log(request.usuario)
     return next.handle();
   }
 }
