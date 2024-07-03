@@ -29,6 +29,7 @@ export class TrabalhosService {
           localizacao: createTrabalhoDto.localizacao,
           valorHora: createTrabalhoDto.valorHora,
           servicoId: createTrabalhoDto.servicoId,
+          descricao: createTrabalhoDto.descricao,
           usuarioSub: sub,
         },
       });
