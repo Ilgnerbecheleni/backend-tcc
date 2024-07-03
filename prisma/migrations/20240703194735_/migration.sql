@@ -36,6 +36,7 @@ CREATE TABLE `Trabalhos` (
     `titulo` VARCHAR(191) NOT NULL,
     `telefone` VARCHAR(191) NOT NULL,
     `localizacao` VARCHAR(191) NOT NULL,
+    `descricao` VARCHAR(191) NULL,
     `valorHora` DOUBLE NOT NULL,
     `servicoId` VARCHAR(191) NOT NULL,
     `usuarioSub` VARCHAR(191) NOT NULL,

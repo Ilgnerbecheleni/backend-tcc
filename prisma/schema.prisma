@@ -53,6 +53,7 @@ model Trabalho {
   titulo        String 
   telefone      String
   localizacao   String
+  descricao     String?
   valorHora     Float
   servicoId     String
   usuarioSub    String    // Altere de usuarioId para usuarioSub

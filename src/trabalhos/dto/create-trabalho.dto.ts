@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import {  IsNumber, IsString } from "class-validator";
+import {  IsNumber, IsOptional, IsString } from "class-validator";
 
 export class CreateTrabalhoDto {
 
@@ -13,7 +13,9 @@ localizacao:string;
 valorHora:number;
 @IsString()
 servicoId:string;
-
+@IsString()
+@IsOptional()
+descricao:string;
 
 
 }
